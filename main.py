@@ -3,6 +3,7 @@ from typing import Optional
 from fastapi import FastAPI, UploadFile
 
 from sam_utils import segment_image
+import cv2
 
 app = FastAPI()
 
@@ -13,6 +14,10 @@ async def root():
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
+    with open("/test_images/0279.jpg", "rb") as file:
+        image_bytes = file.read()
+        s = segment_image(image_bytes)
+        print('asd')
     return {"item_id": item_id, "q": q}
 
 
