@@ -3,7 +3,6 @@ from typing import Optional
 from fastapi import FastAPI, UploadFile
 
 from sam_utils import segment_image
-import cv2
 
 app = FastAPI()
 
