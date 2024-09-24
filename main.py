@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import FastAPI, UploadFile
 
 from sam_utils import segment_image
-
+import os
 app = FastAPI()
 
 
@@ -13,6 +13,9 @@ async def root():
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
+    pth = os.getcwd()
+    print(f"pth: {pth}")
+    print(f"pth img: {os.path.join(pth, "test_images")}")
     with open("/test_images/0279.jpg", "rb") as file:
         image_bytes = file.read()
         s = segment_image(image_bytes)
